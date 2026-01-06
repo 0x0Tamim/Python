@@ -9,3 +9,12 @@ print(type(z))
 
 bo = True
 print(type(bo))
+
+x = "100"
+y = "45.6"
+
+x = int(x)
+
+y = float(y)
+
+print(x,y)
