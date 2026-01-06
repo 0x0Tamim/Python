@@ -6,3 +6,6 @@ print(type(y))
 
 z="rtami"
 print(type(z))
+
+bo = True
+print(type(bo))
