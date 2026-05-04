@@ -47,4 +47,8 @@ newFullLine2=newFullLine.replace("i love","I really love")
 print(newFullLine2)
 
 name = "Tamim"
-print(f"My name is{name} and my cgpa is {cgpa}")
+print(f"My name is {name} and my cgpa is {cgpa}")
+
+namee = "tamim uz zaman"
+newName = namee.title()
+print(newName)
