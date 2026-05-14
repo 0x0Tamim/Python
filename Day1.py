@@ -90,3 +90,91 @@ print(a|b)
 print(a&b)
 print(a-b)
 print(a^b)
+
+student = {"Name":"Tamim",
+           "Dept":"CSE",
+           "CGPA":3.82}
+print(student)
+print(student.get("Name"))
+print(student.get("Dept"))
+print(student.get("CGPA"))
+student["CGPA"]=3.86
+print(student.get("CGPA"))
+
+for key in student:
+    print(key)
+
+for value in student.values():
+    print(value)
+
+for k,v in student.items():
+    print(k,v)
+
+
+squares = {x:x**2 for x in range(10)}
+for k,v in squares.items():
+    print(k,"square =",v)
+
+nineTable = {x:x*9 for x in range(1,11)}
+for k,v in nineTable.items():
+    print("9 *",k,"=",v)
+
+for i in range(3):
+    for j in range(2):
+        print(i,j)
+
+
+i = 0
+while i<5:
+    print(i)
+    i+=1
+
+
+password = ""
+
+#while password != "admin":
+    #password = input("Enter password: ")
+
+    #if password != "admin":
+        #print("Wrong password")
+
+#print("Access Granted")
+
+
+def greet(name="Guest"):
+    print(f"Hello {name}")
+
+greet("Tamim")
+greet()
+
+
+def total(*nums): #Here nums is a tuple
+    s = 0
+    for n in nums:
+        s+=n
+    return s    
+
+print(total(1,2,3,4,5,6,7,8,9,10))
+
+
+def studentInfo(**data):
+    for k,v in data.items():
+        print(k,v)
+
+studentInfo(name = "Tamim",
+            CGPA = 3.82,
+            dept = "CSE")
+
+
+
+def countdown(n):
+
+    if n == 0:
+        print(n)
+        return
+
+    print(n)
+
+    countdown(n - 1)
+
+countdown(10)
