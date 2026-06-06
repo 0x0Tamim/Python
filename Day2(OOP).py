@@ -28,3 +28,18 @@ account1.show_balance()
 
 account2.withdraw(500)
 account2.show_balance()
+
+
+
+class Student:
+    def __init__(self,name,age,grade):
+        self.name = name
+        self.age = age
+        self.grade = grade
+
+    def intro(self):
+        print(f"Hi, I am {self.name}, I am {self.age} years old and my cgpa is {self.grade}")
+
+student1 = Student('Fahim',22,3.45)
+student1.intro()
+    
