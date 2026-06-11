@@ -42,4 +42,23 @@ class Student:
 
 student1 = Student('Fahim',22,3.45)
 student1.intro()
+
+
+
+class Rectangle:
+    def __init__(self,width, height):
+        self.width = width
+        self.height = height
+        
     
+    def area(self):
+        return self.width * self.height
+    
+    def perimeter(self):
+        return self.width + self.height
+    
+    def describe(self):
+        print(f"I am a rectangle, my width is {self.width} meter, height is {self.height} meter, my are is {self.area()} square meter and my perimeter is {self.perimeter()} meter")
+
+r = Rectangle(5,7)
+r.describe()
