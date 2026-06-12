@@ -117,3 +117,65 @@ s2.display()
 Student.change_university("Dhaka University")
 s1.display()
 s2.display()    
+
+
+class ATM:
+
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    # 1. PUBLIC variable (কোনো underscore নেই)
+    #    যে কেউ access করতে পারে
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    bank_name = "BD Bank"          # Class level
+    def __init__(self, balance, pin):
+        self.location = "Dhaka"    # Public — যে কেউ দেখতে পারে
+
+        # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        # 2. PROTECTED variable (_single underscore)
+        #    Convention: "internal use only — বাইরে use করো না"
+        #    Python actually enforce করে না — এটা gentleman's agreement
+        # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        self._balance = balance    # Protected — subclass এ use করা যায়
+
+        # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        # 3. PRIVATE variable (__double underscore)
+        #    Name mangling হয় — বাইরে থেকে directly access কঠিন
+        # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        self.__pin = pin           # Private — শুধু এই class-এর ভেতরে
+
+    def withdraw(self, amount, entered_pin):
+        if entered_pin != self.__pin:  # Private data class ভেতরে access হচ্ছে
+            print("❌ Wrong PIN!")
+            return
+        if amount > self._balance:
+            print("❌ Insufficient funds!")
+            return
+        self._balance -= amount
+        print(f"✅ Withdrew {amount}. Remaining: {self._balance}")
+
+    def check_balance(self, entered_pin):
+        if entered_pin != self.__pin:
+            print("❌ Wrong PIN!")
+            return
+        print(f"Balance: {self._balance}")
+
+atm = ATM(10000, 1234)
+
+# Public access — fine
+print(atm.location)       # Dhaka
+print(atm.bank_name)      # BD Bank
+
+# Protected — technically works but shouldn't
+print(atm._balance)       # 10000 — works, but bad practice
+
+# Private — name mangling!
+# print(atm.__pin)        # AttributeError! Cannot access directly
+
+# Name mangling দেখো:
+print(dir(atm))
+# '_ATM__pin' নামে আছে — Python rename করে দিয়েছে
+print(atm._ATM__pin)      # 1234 — এভাবে technically access করা যায়
+                          # কিন্তু কখনো করবে না!
+
+# Correct way — method দিয়ে
+atm.withdraw(500, 1234)   # ✅ Withdrew 500. Remaining: 9500
+atm.withdraw(500, 9999)   # ❌ Wrong PIN!
