@@ -65,117 +65,155 @@
 
 
 
+#CLASS VARIABLE, STATIC METHOD, CLASS METHOD
+# class Student:
 
-class Student:
+#     university = 'East West University'
+#     def __init__(self,name,cgpa):
+#         self.name = name
+#         self.cgpa = cgpa
 
-    university = 'East West University'
-    def __init__(self,name,cgpa):
-        self.name = name
-        self.cgpa = cgpa
-
-    def display(self):
-        print(f"Name: {self.name}\nCGPA: {self.cgpa}\nUniversity: {self.university}")
-
-
-    def is_honors(self):
-        if self.cgpa>=3.75:
-            return True
-
-        else:
-            return True
+#     def display(self):
+#         print(f"Name: {self.name}\nCGPA: {self.cgpa}\nUniversity: {self.university}")
 
 
-    @classmethod
-    def change_university(cls,newUni):
-        cls.university = newUni
+#     def is_honors(self):
+#         if self.cgpa>=3.75:
+#             return True
+
+#         else:
+#             return True
+
+
+#     @classmethod
+#     def change_university(cls,newUni):
+#         cls.university = newUni
         
     
-    @classmethod
-    def from_percentage(cls,name,percentage):
-        cgpa = percentage/25
-        return cls(name,cgpa)
+#     @classmethod
+#     def from_percentage(cls,name,percentage):
+#         cgpa = percentage/25
+#         return cls(name,cgpa)
     
-    @staticmethod
-    def is_valid_cgpa(cgpa):
-        if cgpa>= 0 and cgpa<=4:
-            return True
-        else:
-            return True
+#     @staticmethod
+#     def is_valid_cgpa(cgpa):
+#         if cgpa>= 0 and cgpa<=4:
+#             return True
+#         else:
+#             return True
 
-s1 = Student("Tamim", 3.85)
+# s1 = Student("Tamim", 3.85)
 
-s1.display()
+# s1.display()
 
-print(s1.is_honors())
+# print(s1.is_honors())
 
-print(Student.is_valid_cgpa(3.85))
+# print(Student.is_valid_cgpa(3.85))
 
-s2 = Student.from_percentage("Rahim", 95)
+# s2 = Student.from_percentage("Rahim", 95)
 
-s2.display()
+# s2.display()
 
-Student.change_university("Dhaka University")
-s1.display()
-s2.display()    
+# Student.change_university("Dhaka University")
+# s1.display()
+# s2.display()    
 
 
-class ATM:
 
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    # 1. PUBLIC variable (কোনো underscore নেই)
-    #    যে কেউ access করতে পারে
-    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    bank_name = "BD Bank"          # Class level
-    def __init__(self, balance, pin):
-        self.location = "Dhaka"    # Public — যে কেউ দেখতে পারে
+#ENCAPSULATION
 
-        # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        # 2. PROTECTED variable (_single underscore)
-        #    Convention: "internal use only — বাইরে use করো না"
-        #    Python actually enforce করে না — এটা gentleman's agreement
-        # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        self._balance = balance    # Protected — subclass এ use করা যায়
+# class ATM:
 
-        # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        # 3. PRIVATE variable (__double underscore)
-        #    Name mangling হয় — বাইরে থেকে directly access কঠিন
-        # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        self.__pin = pin           # Private — শুধু এই class-এর ভেতরে
+#     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#     # 1. PUBLIC variable (কোনো underscore নেই)
+#     #    যে কেউ access করতে পারে
+#     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#     bank_name = "BD Bank"          # Class level
+#     def __init__(self, balance, pin):
+#         self.location = "Dhaka"    # Public — যে কেউ দেখতে পারে
 
-    def withdraw(self, amount, entered_pin):
-        if entered_pin != self.__pin:  # Private data class ভেতরে access হচ্ছে
-            print("❌ Wrong PIN!")
-            return
-        if amount > self._balance:
-            print("❌ Insufficient funds!")
-            return
-        self._balance -= amount
-        print(f"✅ Withdrew {amount}. Remaining: {self._balance}")
+#         # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#         # 2. PROTECTED variable (_single underscore)
+#         #    Convention: "internal use only — বাইরে use করো না"
+#         #    Python actually enforce করে না — এটা gentleman's agreement
+#         # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#         self._balance = balance    # Protected — subclass এ use করা যায়
 
-    def check_balance(self, entered_pin):
-        if entered_pin != self.__pin:
-            print("❌ Wrong PIN!")
-            return
-        print(f"Balance: {self._balance}")
+#         # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#         # 3. PRIVATE variable (__double underscore)
+#         #    Name mangling হয় — বাইরে থেকে directly access কঠিন
+#         # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+#         self.__pin = pin           # Private — শুধু এই class-এর ভেতরে
 
-atm = ATM(10000, 1234)
+#     def withdraw(self, amount, entered_pin):
+#         if entered_pin != self.__pin:  # Private data class ভেতরে access হচ্ছে
+#             print("❌ Wrong PIN!")
+#             return
+#         if amount > self._balance:
+#             print("❌ Insufficient funds!")
+#             return
+#         self._balance -= amount
+#         print(f"✅ Withdrew {amount}. Remaining: {self._balance}")
 
-# Public access — fine
-print(atm.location)       # Dhaka
-print(atm.bank_name)      # BD Bank
+#     def check_balance(self, entered_pin):
+#         if entered_pin != self.__pin:
+#             print("❌ Wrong PIN!")
+#             return
+#         print(f"Balance: {self._balance}")
 
-# Protected — technically works but shouldn't
-print(atm._balance)       # 10000 — works, but bad practice
+# atm = ATM(10000, 1234)
 
-# Private — name mangling!
-# print(atm.__pin)        # AttributeError! Cannot access directly
+# # Public access — fine
+# print(atm.location)       # Dhaka
+# print(atm.bank_name)      # BD Bank
 
-# Name mangling দেখো:
-print(dir(atm))
-# '_ATM__pin' নামে আছে — Python rename করে দিয়েছে
-print(atm._ATM__pin)      # 1234 — এভাবে technically access করা যায়
-                          # কিন্তু কখনো করবে না!
+# # Protected — technically works but shouldn't
+# print(atm._balance)       # 10000 — works, but bad practice
 
-# Correct way — method দিয়ে
-atm.withdraw(500, 1234)   # ✅ Withdrew 500. Remaining: 9500
-atm.withdraw(500, 9999)   # ❌ Wrong PIN!
+# # Private — name mangling!
+# # print(atm.__pin)        # AttributeError! Cannot access directly
+
+# # Name mangling দেখো:
+# print(dir(atm))
+# # '_ATM__pin' নামে আছে — Python rename করে দিয়েছে
+# print(atm._ATM__pin)      # 1234 — এভাবে technically access করা যায়
+#                           # কিন্তু কখনো করবে না!
+
+# # Correct way — method দিয়ে
+# atm.withdraw(500, 1234)   # ✅ Withdrew 500. Remaining: 9500
+# atm.withdraw(500, 9999)   # ❌ Wrong PIN!
+
+
+
+import random
+
+class BankAccount:
+
+    bank_name = "Trust Bank"
+    total_acc = 0
+
+    def __init__(self, name, balance, pin):
+        self.name = name
+        self._balance = balance
+        self.__pin = pin
+        self.__accNo = random.random()*10
+
+
+    
+    @property
+    def name(self):
+        return self.name.title()
+
+
+    @name.setter
+    def name(self,newName):
+        if newName =" "
+        self.name = newName
+
+    
+
+
+
+
+
+    
