@@ -188,27 +188,74 @@
 import random
 
 class BankAccount:
-
     bank_name = "Trust Bank"
     total_acc = 0
 
     def __init__(self, name, balance, pin):
-        self.name = name
+        self._name = name
         self._balance = balance
         self.__pin = pin
-        self.__accNo = random.random()*10
+        self.__accNo = random.randint(10000000, 99999999)
+        BankAccount.total_acc += 1
 
-
-    
     @property
     def name(self):
-        return self.name.title()
-
+        return self._name.title()
 
     @name.setter
-    def name(self,newName):
-        if newName =" "
-        self.name = newName
+    def name(self, newName):
+        if newName == "":
+            print("Name cannot be empty")
+            return
+        self._name = newName
+
+    @property
+    def balance(self):
+        return self._balance
+
+    @property
+    def accNo(self):
+        return self.__accNo
+
+    def deposit(self, amount, pin):
+        if pin != self.__pin:
+            print("Invalid Pin")
+            return 0
+
+        if amount < 0:
+            print("Invalid amount")
+            return 0
+
+        self._balance += amount
+
+    def withdraw(self, amount, pin):
+        if pin != self.__pin:
+            print("Invalid Pin")
+            return 0
+
+        if amount > self._balance:
+            print("Insufficient balance!")
+            return 0
+
+        self._balance -= amount
+
+    def display(self):
+        print(
+            f"Bank Name: {self.bank_name}\n"
+            f"Owner Name: {self.name}\n"
+            f"Account no: {self.accNo}\n"
+            f"Current Balance: {self._balance}"
+        )
+
+    @classmethod
+    def change_bank_name(cls, new_name):
+        cls.bank_name = new_name
+
+
+acc1 = BankAccount("Tamim", 10000, 1234)
+acc2 = BankAccount("Fahim", 10400, 4321)
+
+acc1.display()
 
     
 
